@@ -23,6 +23,9 @@
         "rootDir": "./src",
         "baseUrl": "./",
         "incremental": true,
+        "lib": [
+            "es2021"
+        ],
         "paths": {
             "@core/*": [
                 "./src/core/*"
