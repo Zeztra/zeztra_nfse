@@ -1,0 +1,17 @@
+{
+    "jsc": {
+      "externalHelpers": true,
+      "target": "es2020",
+      "parser": {
+        "syntax": "typescript",
+        "tsx": false,         // Se você estiver usando JSX com TypeScript, defina como true
+        "decorators": true    // Se estiver usando decorators no TypeScript
+      },
+      "loose": true
+    },
+    "module": {
+      "type": "commonjs"       // Define o sistema de módulos (CommonJS para Node.js)
+    },
+    "sourceMaps": true          // Gera source maps para debugging
+  }
+  

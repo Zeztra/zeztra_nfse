@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+        // Treat files as modules even if it doesn't use import/export
+        "moduleDetection": "force",
+        // Ignore module structure
+        "module": "commonjs",
+        // Allow JSON modules to be imported
+        "resolveJsonModule": true,
+        // Use correct ESM import behavior
+        "esModuleInterop": true,
+        // Disallow features that require cross-file awareness
+        "isolatedModules": true,
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "target": "es2019",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "baseUrl": "./",
+        "incremental": true,
+        "paths": {
+            "@core/*": [
+                "./src/core/*"
+            ],
+            "@application/*": [
+                "src/application/*"
+            ],
+            "@domain/*": [
+                "./src/domain/*"
+            ],
+            "@infra/*": [
+                "./src/infra/*"
+            ]
+        },
+        "typeRoots": [
+            "types/types.d.ts",
+        ]
+    },
+}
