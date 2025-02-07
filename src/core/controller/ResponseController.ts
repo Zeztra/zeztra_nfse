@@ -1,3 +1,5 @@
+import { HttpStatusCode } from 'axios';
+
 export type ResponseController = {
   statusCode: number;
   payload: any;
@@ -6,7 +8,7 @@ export type ResponseController = {
 
 export function ok<T>(dto?: T): ResponseController {
   return {
-    statusCode: 200,
+    statusCode: HttpStatusCode.Ok,
     payload: dto,
     success: true,
   };
@@ -14,7 +16,7 @@ export function ok<T>(dto?: T): ResponseController {
 
 export function created(): ResponseController {
   return {
-    statusCode: 201,
+    statusCode: HttpStatusCode.Created,
     payload: undefined,
     success: true,
   };
@@ -22,7 +24,7 @@ export function created(): ResponseController {
 
 export function accepted(): ResponseController {
   return {
-    statusCode: 202,
+    statusCode: HttpStatusCode.Accepted,
     payload: undefined,
     success: true,
   };
@@ -30,7 +32,7 @@ export function accepted(): ResponseController {
 
 export function badRequest(error: string): ResponseController {
   return {
-    statusCode: 400,
+    statusCode: HttpStatusCode.BadRequest,
     payload: { error },
     success: false,
   };
@@ -38,7 +40,7 @@ export function badRequest(error: string): ResponseController {
 
 export function unprocessableEntity(error: string): ResponseController {
   return {
-    statusCode: 422,
+    statusCode: HttpStatusCode.UnprocessableEntity,
     payload: { error },
     success: false,
   };
@@ -46,7 +48,7 @@ export function unprocessableEntity(error: string): ResponseController {
 
 export function unauthorized(error: string): ResponseController {
   return {
-    statusCode: 401,
+    statusCode: HttpStatusCode.Unauthorized,
     payload: { error },
     success: false,
   };
@@ -54,7 +56,7 @@ export function unauthorized(error: string): ResponseController {
 
 export function forbidden(error: string): ResponseController {
   return {
-    statusCode: 403,
+    statusCode: HttpStatusCode.Forbidden,
     payload: { error },
     success: false,
   };
@@ -62,7 +64,7 @@ export function forbidden(error: string): ResponseController {
 
 export function notFound(error: string): ResponseController {
   return {
-    statusCode: 404,
+    statusCode: HttpStatusCode.NotFound,
     payload: { error },
     success: false,
   };
@@ -70,7 +72,7 @@ export function notFound(error: string): ResponseController {
 
 export function conflict(error: string): ResponseController {
   return {
-    statusCode: 409,
+    statusCode: HttpStatusCode.Conflict,
     payload: { error },
     success: false,
   };
@@ -78,7 +80,7 @@ export function conflict(error: string): ResponseController {
 
 export function tooMany(error: string): ResponseController {
   return {
-    statusCode: 429,
+    statusCode: HttpStatusCode.TooManyRequests,
     payload: { error },
     success: false,
   };
@@ -88,7 +90,7 @@ export function fail(error: string): ResponseController {
   console.log(error);
 
   return {
-    statusCode: 500,
+    statusCode: HttpStatusCode.InternalServerError,
     payload: { error },
     success: false,
   };

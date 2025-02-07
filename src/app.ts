@@ -6,14 +6,14 @@ import helmet from 'helmet';
 import { createServer } from 'http';
 import morgan from 'morgan';
 
-// import passport from '@infra/http/middlewares';
-// import routes from '@infra/http/routes';
+import { middlewares } from '@infra/http/middlewares';
+import { routes } from '@infra/http/routes';
 
 const app = express();
 
 const server = createServer(app);
 
-// passport(app);
+middlewares(app);
 
 app.use(
   cors(),
@@ -23,6 +23,6 @@ app.use(
   express.urlencoded({ limit: '2000MB', extended: true }),
 );
 
-// routes(app);
+routes(app);
 
 export default server;

@@ -4,21 +4,18 @@ declare global {
     interface ProcessEnv {
       PORT: number;
       NODE_ENV: 'local' | 'production' | 'homolog';
-      URL_API_ZEZTRA: string;
-      CRYPTO_KEY_DEFAULT: string;
+      PLUGNOTAS_URL_API: string;
       MONGO_HOST: string;
       MONGO_PORT: number;
       MONGO_USER: string;
       MONGO_PASS: string;
       MONGO_DB: string;
-      REDIS_HOST: string;
-      REDIS_PORT: number;
-      SSL_FOLDER: string;
-      REDIS_PASSWORD: string;
-      VALIDE_KEYS: string;
-      WORKER_ENABLED: 'true' | 'false';
-      CNAB_FOLDER: string;
-      AWS_LOPES: string;
+      AWS_END_POINT: string;
+      AWS_REGION: string;
+      AWS_ACCESS_KEY: string;
+      AWS_SECRET_KEY: string;
+      V1_AUTH_USER: string;
+      V1_AUTH_PASS: string;
     }
   }
 }
