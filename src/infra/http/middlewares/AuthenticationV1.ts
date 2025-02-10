@@ -1,5 +1,3 @@
-import { EPlayerNFSe } from '@domain/entities/ManagerCompany';
-import { managerCompanyRepository } from '@infra/db/mongodb/implementations/ManagerCompanyRepository';
 import passport, { PassportStatic } from 'passport';
 import { BasicStrategy } from 'passport-http';
 
@@ -24,18 +22,9 @@ export default (): PassportStatic => {
           return done(null, false);
         }
 
-        managerCompanyRepository
-          .auth(managerCompanyCpfCnpj as string, EPlayerNFSe.PLUGNOTAS)
-          .then((managerCompany) => {
-            if (!managerCompany?.cpfCnpj) {
-              return done(null, false);
-            }
-
-            return done(null, { managerCompany });
-          })
-          .catch(() => {
-            return done(null, false);
-          });
+        return done(null, {
+          managerCompanyCpfCnpj,
+        });
       },
     ),
   );

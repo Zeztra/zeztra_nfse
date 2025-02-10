@@ -4,7 +4,8 @@ import { ResponseController } from '@core/controller/ResponseController';
 class CompanyController {
   async configure(event: any): Promise<ResponseController> {
     return companyFactory.configure({
-      managerCompany: event.user.managerCompany,
+      managerCompanyCpfCnpj: event.user.managerCompanyCpfCnpj,
+      company: { ...event.body },
     });
   }
 }
