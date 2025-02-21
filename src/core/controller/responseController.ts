@@ -30,7 +30,7 @@ export function accepted(): ResponseController {
   };
 }
 
-export function badRequest(error: string): ResponseController {
+export function badRequest(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.BadRequest,
     payload: { error },
@@ -38,7 +38,9 @@ export function badRequest(error: string): ResponseController {
   };
 }
 
-export function unprocessableEntity(error: string): ResponseController {
+export function unprocessableEntity(
+  error: string | object,
+): ResponseController {
   return {
     statusCode: HttpStatusCode.UnprocessableEntity,
     payload: { error },
@@ -46,7 +48,7 @@ export function unprocessableEntity(error: string): ResponseController {
   };
 }
 
-export function unauthorized(error: string): ResponseController {
+export function unauthorized(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.Unauthorized,
     payload: { error },
@@ -54,7 +56,7 @@ export function unauthorized(error: string): ResponseController {
   };
 }
 
-export function forbidden(error: string): ResponseController {
+export function forbidden(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.Forbidden,
     payload: { error },
@@ -62,7 +64,7 @@ export function forbidden(error: string): ResponseController {
   };
 }
 
-export function notFound(error: string): ResponseController {
+export function notFound(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.NotFound,
     payload: { error },
@@ -70,7 +72,7 @@ export function notFound(error: string): ResponseController {
   };
 }
 
-export function conflict(error: string): ResponseController {
+export function conflict(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.Conflict,
     payload: { error },
@@ -78,7 +80,7 @@ export function conflict(error: string): ResponseController {
   };
 }
 
-export function tooMany(error: string): ResponseController {
+export function tooMany(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.TooManyRequests,
     payload: { error },
@@ -86,7 +88,7 @@ export function tooMany(error: string): ResponseController {
   };
 }
 
-export function fail(error: string): ResponseController {
+export function fail(error: string | object): ResponseController {
   console.log(error);
 
   return {

@@ -1,8 +1,9 @@
 import passport from 'passport';
+import { Express } from 'express';
 
-import authenticationV1 from './AuthenticationV1';
+import authenticationV1 from './authenticationV1';
 
-const middlewares = (app: any): void => {
+const middlewares = (app: Express): void => {
   passport.serializeUser((user: Express.User, done) => {
     done(null, user);
   });
