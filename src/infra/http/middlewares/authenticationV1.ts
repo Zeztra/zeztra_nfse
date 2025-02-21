@@ -1,5 +1,6 @@
 import passport, { PassportStatic } from 'passport';
 import { BasicStrategy } from 'passport-http';
+import { ApiConfig } from 'plugnotas-client';
 
 export default (): PassportStatic => {
   passport.use(
@@ -9,9 +10,9 @@ export default (): PassportStatic => {
         passReqToCallback: true,
       },
       async (req, userId, password, done) => {
-        const managerCompanyCpfCnpj = req.headers['x-manager-company-cpfcnpj'];
+        const xApiKey = req.headers['x-api-key'];
 
-        if (!userId || !password || !managerCompanyCpfCnpj) {
+        if (!userId || !password || !xApiKey) {
           return done(null, false);
         }
 
@@ -22,8 +23,11 @@ export default (): PassportStatic => {
           return done(null, false);
         }
 
+        const apiConfig = ApiConfig.getInstance();
+        apiConfig.apiKey = xApiKey as string;
+
         return done(null, {
-          managerCompanyCpfCnpj,
+          xApiKey,
         });
       },
     ),

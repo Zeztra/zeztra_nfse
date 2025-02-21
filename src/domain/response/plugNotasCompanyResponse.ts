@@ -1,7 +1,7 @@
 import {
   ERegimeTributario,
   ERegimeTributarioEspecial,
-} from '@domain/entities/PlugNotas';
+} from '@domain/entities/plugNotas';
 
 export type PlugNotasCompanyCreateResponseSuccess = {
   message: string;

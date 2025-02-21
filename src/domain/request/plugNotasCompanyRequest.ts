@@ -2,7 +2,7 @@ import {
   ERegimeTributario,
   ERegimeTributarioEspecial,
   TTipoLogradouro,
-} from '@domain/entities/PlugNotas';
+} from '@domain/entities/plugNotas';
 
 export type PlugNotasCompanyCreateRequest = {
   cpfCnpj: string;

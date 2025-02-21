@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { LogAction, LogType } from '@domain/entities/Log';
+import { LogAction, LogType } from '@domain/entities/log';
 
 export type ResponseControllerHTTP = {
   statusCode: number;
@@ -42,4 +42,31 @@ const resJson = (
   });
 };
 
-export { runAsyncWrapper, resJson };
+const resPDF = (
+  response: Response,
+  responseController: ResponseControllerHTTP,
+  saveLog?: {
+    action: LogAction;
+    type: LogType;
+    saveLogResponse: (
+      action: LogAction,
+      logType: LogType,
+      req: any,
+      responseHTTP: ResponseControllerHTTP,
+    ) => void;
+  },
+): any => {
+  if (saveLog) {
+    saveLog.saveLogResponse(
+      saveLog.action,
+      saveLog.type,
+      response.req,
+      responseController,
+    );
+  }
+  return response.status(responseController.statusCode)
+    .setHeader('Content-Type', 'application/pdf')
+    .send(responseController.payload);
+};
+
+export { runAsyncWrapper, resJson, resPDF };

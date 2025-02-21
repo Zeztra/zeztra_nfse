@@ -3,7 +3,7 @@ import crypto from 'crypto';
 const algorithm = 'aes-192-cbc';
 const cryptoKeyDefault: string = process.env.CRYPTO_KEY_DEFAULT ?? '';
 
-const Encrypt = (text: string): string => {
+export const encrypt = (text: string): string => {
   try {
     const key = crypto.scryptSync(cryptoKeyDefault, 'salt', 24);
     const iv = Buffer.alloc(16, 0);
@@ -20,7 +20,7 @@ const Encrypt = (text: string): string => {
   }
 };
 
-const Decrypt = (cipher: string): string => {
+export const decrypt = (cipher: string): string => {
   try {
     const key = crypto.scryptSync(cryptoKeyDefault, 'salt', 24);
     // The IV is usually passed along with the ciphertext.
@@ -40,5 +40,3 @@ const Decrypt = (cipher: string): string => {
     throw new Error('BadRequest');
   }
 };
-
-export { Encrypt, Decrypt };
