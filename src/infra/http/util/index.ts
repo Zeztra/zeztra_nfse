@@ -36,9 +36,12 @@ const resJson = (
       responseController,
     );
   }
-  return response.status(responseController.statusCode).jsonp({
-    success: responseController.success,
-    payload: responseController.payload,
+
+  const { success, payload, statusCode } = responseController;
+
+  return response.status(statusCode).jsonp({
+    success,
+    payload,
   });
 };
 
@@ -64,9 +67,20 @@ const resPDF = (
       responseController,
     );
   }
-  return response.status(responseController.statusCode)
+
+  const { success, payload, statusCode } = responseController;
+
+  if (payload.error) {
+    return response.status(statusCode).jsonp({
+      success,
+      payload: payload.error,
+    });
+  }
+
+  return response
+    .status(statusCode)
     .setHeader('Content-Type', 'application/pdf')
-    .send(responseController.payload);
+    .send(payload);
 };
 
 export { runAsyncWrapper, resJson, resPDF };

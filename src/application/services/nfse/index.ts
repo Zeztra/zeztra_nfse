@@ -53,7 +53,7 @@ export class NfseService {
       return fail(response.value.error);
     }
 
-    return ok(response.value.arquivo);
+    return ok(response.value.file);
   }
 
   async xml(req: Request): Promise<ResponseController> {
@@ -64,7 +64,7 @@ export class NfseService {
       return fail(response.value.error);
     }
 
-    return ok(response.value);
+    return ok(response.value.file);
   }
 
   async validate(req: Request): Promise<ResponseController> {
