@@ -34,4 +34,16 @@ export class NfseController {
   static async validate(req: Request): Promise<ResponseController> {
     return NfseFactory.service.validate(req);
   }
+
+  static async sendEventos(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.sendEventos(req);
+  }
+
+  static async getEventos(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.getEventos(req);
+  }
+
+  static async xmlEventos(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.xmlEventos(req);
+  }
 }

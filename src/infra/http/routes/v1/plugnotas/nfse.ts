@@ -61,4 +61,25 @@ router.get(
   }),
 );
 
+router.post(
+  '/eventos/:id',
+  runAsyncWrapper(async (request: Request, response: Response) =>
+    resJson(response, await NfseController.sendEventos(request)),
+  ),
+);
+
+router.get(
+  '/eventos/:id',
+  runAsyncWrapper(async (request: Request, response: Response) =>
+    resJson(response, await NfseController.getEventos(request)),
+  ),
+);
+
+router.get(
+  '/eventos/:id/:protocol/xml',
+  runAsyncWrapper(async (request: Request, response: Response) => {
+    resJson(response, await NfseController.xmlEventos(request));
+  }),
+);
+
 export default router;
