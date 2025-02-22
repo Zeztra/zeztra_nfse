@@ -4,7 +4,10 @@ import {
   fail,
   ResponseController,
 } from '@core/controller/responseController';
-import { NfseSchema, NfseService as NfseServiceClient } from 'plugnotas-client';
+import {
+  validatorSchema,
+  NfseService as NfseServiceClient,
+} from 'plugnotas-client';
 
 export class NfseService {
   private service: NfseServiceClient;
@@ -14,6 +17,12 @@ export class NfseService {
   }
 
   async send(req: Request): Promise<ResponseController> {
+    const responseValidator = await validatorSchema.nfse(req.body);
+
+    if (responseValidator.isError()) {
+      return fail(responseValidator.value);
+    }
+
     const response = await this.service.send(req.body);
 
     if (response.isError()) {
@@ -68,12 +77,12 @@ export class NfseService {
   }
 
   async validate(req: Request): Promise<ResponseController> {
-    const response = await NfseSchema.validate(req.body);
+    const response = await validatorSchema.nfse(req.body);
 
     if (response.isError()) {
       return fail(response.value);
     }
 
-    return ok('NFSe válida!');
+    return ok();
   }
 }
