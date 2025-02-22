@@ -24,7 +24,7 @@
         "baseUrl": "./",
         "incremental": true,
         "lib": [
-            "es2021"
+            "ES2022"
         ],
         "paths": {
             "@core/*": [
