@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import {
   ok,
-  fail,
+  handleError,
   ResponseController,
 } from '@core/controller/responseController';
 import {
@@ -20,13 +20,14 @@ export class NfseService {
     const responseValidator = await validatorSchema.nfse(req.body);
 
     if (responseValidator.isError()) {
-      return fail(responseValidator.value);
+      return handleError(responseValidator.value, 400);
     }
 
     const response = await this.service.send(req.body);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -37,7 +38,8 @@ export class NfseService {
     const response = await this.service.cancel(id, req.body);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -48,18 +50,20 @@ export class NfseService {
     const response = await this.service.statusCancel(protocol);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
-  }  
+  }
 
   async get(req: Request): Promise<ResponseController> {
     const { id } = req.params;
     const response = await this.service.get(id);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -70,7 +74,8 @@ export class NfseService {
     const response = await this.service.pdf(id);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value.file);
@@ -81,18 +86,20 @@ export class NfseService {
     const response = await this.service.pdfRps(id);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value.file);
   }
-  
+
   async xml(req: Request): Promise<ResponseController> {
     const { id } = req.params;
     const response = await this.service.xml(id);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value.file);
@@ -102,7 +109,7 @@ export class NfseService {
     const response = await validatorSchema.nfse(req.body);
 
     if (response.isError()) {
-      return fail(response.value);
+      return handleError(response.value, 400);
     }
 
     return ok();
@@ -113,18 +120,20 @@ export class NfseService {
     const response = await this.service.sendEventos(id, req.body);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
   }
-  
+
   async getEventos(req: Request): Promise<ResponseController> {
     const { id } = req.params;
     const response = await this.service.getEventos(id, req.body);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -135,7 +144,8 @@ export class NfseService {
     const response = await this.service.xmlEventos(id, protocol);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);

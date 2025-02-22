@@ -97,3 +97,21 @@ export function fail(error: string | object): ResponseController {
     success: false,
   };
 }
+
+export function handleError(
+  error: string | object,
+  statusCode: number,
+): ResponseController {
+  switch (statusCode) {
+    case HttpStatusCode.BadRequest:
+      return badRequest(error);
+    case HttpStatusCode.Unauthorized:
+      return unauthorized(error);
+    case HttpStatusCode.NotFound:
+      return notFound(error);
+    case HttpStatusCode.Conflict:
+      return conflict(error);
+    default:
+      return fail(error);
+  }
+}
