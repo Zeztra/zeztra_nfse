@@ -15,10 +15,18 @@ export class NfseController {
     return NfseFactory.service.cancel(req);
   }
 
+  static async statusCancel(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.statusCancel(req);
+  }
+  
   static async pdf(req: Request): Promise<ResponseController> {
     return NfseFactory.service.pdf(req);
   }
 
+  static async pdfRps(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.pdfRps(req);
+  }
+  
   static async xml(req: Request): Promise<ResponseController> {
     return NfseFactory.service.xml(req);
   }

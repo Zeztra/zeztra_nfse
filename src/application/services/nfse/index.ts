@@ -43,6 +43,17 @@ export class NfseService {
     return ok(response.value);
   }
 
+  async statusCancel(req: Request): Promise<ResponseController> {
+    const { protocol } = req.params;
+    const response = await this.service.statusCancel(protocol);
+
+    if (response.isError()) {
+      return fail(response.value.error);
+    }
+
+    return ok(response.value);
+  }  
+
   async get(req: Request): Promise<ResponseController> {
     const { id } = req.params;
     const response = await this.service.get(id);
@@ -65,6 +76,17 @@ export class NfseService {
     return ok(response.value.file);
   }
 
+  async pdfRps(req: Request): Promise<ResponseController> {
+    const { id } = req.params;
+    const response = await this.service.pdfRps(id);
+
+    if (response.isError()) {
+      return fail(response.value.error);
+    }
+
+    return ok(response.value.file);
+  }
+  
   async xml(req: Request): Promise<ResponseController> {
     const { id } = req.params;
     const response = await this.service.xml(id);

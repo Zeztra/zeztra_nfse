@@ -34,9 +34,23 @@ router.post(
 );
 
 router.get(
+  '/cancelar/status/:protocol',
+  runAsyncWrapper(async (request: Request, response: Response) =>
+    resJson(response, await NfseController.statusCancel(request)),
+  ),
+);
+
+router.get(
   '/pdf/:id',
   runAsyncWrapper(async (request: Request, response: Response) => {
     resPDF(response, await NfseController.pdf(request));
+  }),
+);
+
+router.get(
+  '/rps/pdf/:id',
+  runAsyncWrapper(async (request: Request, response: Response) => {
+    resPDF(response, await NfseController.pdfRps(request));
   }),
 );
 
