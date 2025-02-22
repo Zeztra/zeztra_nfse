@@ -16,14 +16,16 @@ class RedisCache {
       env.NODE_ENV === 'homolog' ||
       env.NODE_ENV === 'staging';
 
-    const redisOptions = useCluster
-      ? {
-          password: env.REDIS_PASSWORD,
-          tls: {
-            checkServerIdentity: () => undefined,
-          },
-        }
-      : {};
+    let redisOptions = {};
+
+    if (useCluster) {
+      redisOptions = {
+        password: env.REDIS_PASSWORD,
+        tls: {
+          checkServerIdentity: () => undefined,
+        },
+      };
+    }
 
     return nodes.length > 1 || useCluster
       ? new Redis.Cluster(nodes, {
@@ -37,20 +39,12 @@ class RedisCache {
   }
 
   async connect(): Promise<void> {
-    try {
-      if (!this.redisInstance) {
-        this.redisInstance = this.createInstance();
-      }
-      await this.redisInstance.connect();
-
-      console.log('Redis connected');
-    } catch (error) {
-      const erro = error as Error;
-
-      console.error('Error on connect to Redis.', { error: erro });
-
-      throw error;
+    if (!this.redisInstance) {
+      this.redisInstance = this.createInstance();
     }
+    await this.redisInstance.connect();
+
+    console.log('Redis connected');
   }
 
   async disconnect(): Promise<void> {
