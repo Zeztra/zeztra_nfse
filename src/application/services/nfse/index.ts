@@ -164,4 +164,62 @@ export class NfseService {
 
     return ok(response.value);
   }
+
+  async solve(req: Request): Promise<ResponseController> {
+    const { id } = req.params;
+    const response = await this.service.solve(id, req.body);
+
+    if (response.isError()) {
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
+    }
+
+    return ok(response.value);
+  }
+
+  async interrupt(req: Request): Promise<ResponseController> {
+    const response = await this.service.interrupt(req.body);
+
+    if (response.isError()) {
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
+    }
+
+    return ok(response.value);
+  }
+
+  async statusInterrupt(req: Request): Promise<ResponseController> {
+    const { protocol } = req.params;
+    const response = await this.service.statusInterrupt(protocol);
+
+    if (response.isError()) {
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
+    }
+
+    return ok(response.value);
+  }
+
+  async synchronize(req: Request): Promise<ResponseController> {
+    const response = await this.service.synchronize(req.body);
+
+    if (response.isError()) {
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
+    }
+
+    return ok(response.value);
+  }
+
+  async statusSynchronize(req: Request): Promise<ResponseController> {
+    const { protocol } = req.params;
+    const response = await this.service.statusSynchronize(protocol);
+
+    if (response.isError()) {
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
+    }
+
+    return ok(response.value);
+  }
 }
