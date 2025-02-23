@@ -89,4 +89,39 @@ router.post(
   }),
 );
 
+router.post(
+  '/resolve/:id',
+  runAsyncWrapper(async (request: Request, response: Response) => {
+    resJson(response, await NfseController.solve(request));
+  }),
+);
+
+router.post(
+  '/interromper',
+  runAsyncWrapper(async (request: Request, response: Response) => {
+    resJson(response, await NfseController.interrupt(request));
+  }),
+);
+
+router.get(
+  '/interromper/status/:protocol',
+  runAsyncWrapper(async (request: Request, response: Response) =>
+    resJson(response, await NfseController.statusInterrupt(request)),
+  ),
+);
+
+router.post(
+  '/sincronizar',
+  runAsyncWrapper(async (request: Request, response: Response) => {
+    resJson(response, await NfseController.synchronize(request));
+  }),
+);
+
+router.get(
+  '/sincronizar/status/:protocol',
+  runAsyncWrapper(async (request: Request, response: Response) =>
+    resJson(response, await NfseController.statusSynchronize(request)),
+  ),
+);
+
 export default router;

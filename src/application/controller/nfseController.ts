@@ -18,7 +18,7 @@ export class NfseController {
   static async statusCancel(req: Request): Promise<ResponseController> {
     return NfseFactory.service.statusCancel(req);
   }
-  
+
   static async pdf(req: Request): Promise<ResponseController> {
     return NfseFactory.service.pdf(req);
   }
@@ -26,7 +26,7 @@ export class NfseController {
   static async pdfRps(req: Request): Promise<ResponseController> {
     return NfseFactory.service.pdfRps(req);
   }
-  
+
   static async xml(req: Request): Promise<ResponseController> {
     return NfseFactory.service.xml(req);
   }
@@ -49,5 +49,25 @@ export class NfseController {
 
   static async regeneratePdf(req: Request): Promise<ResponseController> {
     return NfseFactory.service.regeneratePdf(req);
+  }
+
+  static async solve(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.solve(req);
+  }
+
+  static async interrupt(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.interrupt(req);
+  }
+
+  static async statusInterrupt(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.statusInterrupt(req);
+  }
+
+  static async synchronize(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.synchronize(req);
+  }
+
+  static async statusSynchronize(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.statusSynchronize(req);
   }
 }
