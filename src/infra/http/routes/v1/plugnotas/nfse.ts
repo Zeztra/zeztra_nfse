@@ -64,21 +64,21 @@ router.get(
 router.post(
   '/eventos/:id',
   runAsyncWrapper(async (request: Request, response: Response) =>
-    resJson(response, await NfseController.sendEventos(request)),
+    resJson(response, await NfseController.sendEvent(request)),
   ),
 );
 
 router.get(
   '/eventos/:id',
   runAsyncWrapper(async (request: Request, response: Response) =>
-    resJson(response, await NfseController.getEventos(request)),
+    resJson(response, await NfseController.getEvent(request)),
   ),
 );
 
 router.get(
   '/eventos/:id/:protocol/xml',
   runAsyncWrapper(async (request: Request, response: Response) => {
-    resJson(response, await NfseController.xmlEventos(request));
+    resJson(response, await NfseController.xmlEvent(request));
   }),
 );
 

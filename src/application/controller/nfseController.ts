@@ -35,15 +35,15 @@ export class NfseController {
     return NfseFactory.service.validate(req);
   }
 
-  static async sendEventos(req: Request): Promise<ResponseController> {
-    return NfseFactory.service.sendEventos(req);
+  static async sendEvent(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.sendEvent(req);
   }
 
-  static async getEventos(req: Request): Promise<ResponseController> {
-    return NfseFactory.service.getEventos(req);
+  static async getEvent(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.getEvent(req);
   }
 
-  static async xmlEventos(req: Request): Promise<ResponseController> {
-    return NfseFactory.service.xmlEventos(req);
+  static async xmlEvent(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.xmlEvent(req);
   }
 }

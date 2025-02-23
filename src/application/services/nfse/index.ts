@@ -115,9 +115,9 @@ export class NfseService {
     return ok();
   }
 
-  async sendEventos(req: Request): Promise<ResponseController> {
+  async sendEvent(req: Request): Promise<ResponseController> {
     const { id } = req.params;
-    const response = await this.service.sendEventos(id, req.body);
+    const response = await this.service.sendEvent(id, req.body);
 
     if (response.isError()) {
       const { error, statusCode } = response.value;
@@ -127,9 +127,10 @@ export class NfseService {
     return ok(response.value);
   }
 
-  async getEventos(req: Request): Promise<ResponseController> {
+  async getEvent(req: Request): Promise<ResponseController> {
     const { id } = req.params;
-    const response = await this.service.getEventos(id, req.body);
+    const type = req.query.tipoEvento as string;
+    const response = await this.service.getEvent(id, type);
 
     if (response.isError()) {
       const { error, statusCode } = response.value;
@@ -139,9 +140,9 @@ export class NfseService {
     return ok(response.value);
   }
 
-  async xmlEventos(req: Request): Promise<ResponseController> {
+  async xmlEvent(req: Request): Promise<ResponseController> {
     const { id, protocol } = req.params;
-    const response = await this.service.xmlEventos(id, protocol);
+    const response = await this.service.xmlEvent(id, protocol);
 
     if (response.isError()) {
       const { error, statusCode } = response.value;
