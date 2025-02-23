@@ -82,4 +82,11 @@ router.get(
   }),
 );
 
+router.post(
+  '/pdf/:id',
+  runAsyncWrapper(async (request: Request, response: Response) => {
+    resJson(response, await NfseController.regeneratePdf(request));
+  }),
+);
+
 export default router;

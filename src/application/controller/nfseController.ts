@@ -46,4 +46,8 @@ export class NfseController {
   static async xmlEvent(req: Request): Promise<ResponseController> {
     return NfseFactory.service.xmlEvent(req);
   }
+
+  static async regeneratePdf(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.regeneratePdf(req);
+  }
 }

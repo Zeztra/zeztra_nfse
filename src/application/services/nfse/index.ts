@@ -151,4 +151,16 @@ export class NfseService {
 
     return ok(response.value);
   }
+
+  async regeneratePdf(req: Request): Promise<ResponseController> {
+    const { id } = req.params;
+    const response = await this.service.regeneratePdf(id);
+
+    if (response.isError()) {
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
+    }
+
+    return ok(response.value);
+  }
 }
