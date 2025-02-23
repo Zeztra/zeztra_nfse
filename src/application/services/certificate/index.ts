@@ -1,28 +1,54 @@
 import { Request } from 'express';
 import {
   ok,
-  fail,
-  badRequest,
   ResponseController,
+  handleError,
 } from '@core/controller/responseController';
 import { CertificateService as CertificateServiceClient } from 'plugnotas-client';
+import { HttpStatusCode } from 'axios';
 
 export class CertificateService {
   private service: CertificateServiceClient;
+  private listError: string[];
 
   constructor() {
     this.service = new CertificateServiceClient();
+    this.listError = [];
   }
 
-  async create(req: Request): Promise<ResponseController> {
-    const { email, senha } = req.body;
+  private handleRequest(req: Request): ResponseController | void {
+    const { senha } = req.body;
     const arquivo = req.file;
 
     if (!arquivo) {
-      return badRequest("Parâmetro 'arquivo' é obrigatório.");
+      this.listError.push("Parâmetro 'arquivo' é obrigatório.");
     }
 
-    const { buffer, originalname } = arquivo;
+    if (!senha) {
+      this.listError.push("Parâmetro 'senha' é obrigatório.");
+    }
+
+    if (this.listError.length > 0) {
+      const error = {
+        message: 'Falha na validação de esquema.',
+        data: this.listError,
+      };
+
+      return handleError(error, HttpStatusCode.BadRequest);
+    }
+  }
+
+  async create(req: Request): Promise<ResponseController> {
+    const isResponse = this.handleRequest(req);
+
+    if (isResponse) {
+      return isResponse;
+    }
+
+    const { email, senha } = req.body;
+    const arquivo = req.file;
+
+    const { buffer, originalname } = arquivo!;
 
     const formData = new FormData();
     formData.append('arquivo', new Blob([buffer]), originalname);
@@ -32,7 +58,8 @@ export class CertificateService {
     const response = await this.service.create(formData);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -40,14 +67,16 @@ export class CertificateService {
 
   async update(req: Request): Promise<ResponseController> {
     const { id } = req.params;
+    const isResponse = this.handleRequest(req);
+
+    if (isResponse) {
+      return isResponse;
+    }
+
     const { email, senha } = req.body;
     const arquivo = req.file;
 
-    if (!arquivo) {
-      return badRequest("Parâmetro 'arquivo' é obrigatório.");
-    }
-
-    const { buffer, originalname } = arquivo;
+    const { buffer, originalname } = arquivo!;
 
     const formData = new FormData();
     formData.append('arquivo', new Blob([buffer]), originalname);
@@ -57,7 +86,8 @@ export class CertificateService {
     const response = await this.service.update(id, formData);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -68,7 +98,8 @@ export class CertificateService {
     const response = await this.service.get(id);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -78,7 +109,8 @@ export class CertificateService {
     const response = await this.service.getAll();
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -89,7 +121,8 @@ export class CertificateService {
     const response = await this.service.delete(id);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);

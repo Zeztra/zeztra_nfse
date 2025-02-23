@@ -8,6 +8,7 @@ import {
   validatorSchema,
   NfseService as NfseServiceClient,
 } from 'plugnotas-client';
+import { HttpStatusCode } from 'axios';
 
 export class NfseService {
   private service: NfseServiceClient;
@@ -17,10 +18,10 @@ export class NfseService {
   }
 
   async send(req: Request): Promise<ResponseController> {
-    const responseValidator = await validatorSchema.nfse(req.body);
+    const responseValidator = validatorSchema.nfse(req.body);
 
     if (responseValidator.isError()) {
-      return handleError(responseValidator.value, 400);
+      return handleError(responseValidator.value, HttpStatusCode.BadRequest);
     }
 
     const response = await this.service.send(req.body);
@@ -106,10 +107,10 @@ export class NfseService {
   }
 
   async validate(req: Request): Promise<ResponseController> {
-    const response = await validatorSchema.nfse(req.body);
+    const response = validatorSchema.nfse(req.body);
 
     if (response.isError()) {
-      return handleError(response.value, 400);
+      return handleError(response.value, HttpStatusCode.BadRequest);
     }
 
     return ok();

@@ -1,8 +1,8 @@
 import { Request } from 'express';
 import {
   ok,
-  fail,
   ResponseController,
+  handleError,
 } from '@core/controller/responseController';
 import { CityService as CityServiceClient } from 'plugnotas-client';
 
@@ -15,10 +15,11 @@ export class CityService {
 
   async get(req: Request): Promise<ResponseController> {
     const { codigoIbge } = req.params;
-    const response = await this.service.get({ codigoIbge });
+    const response = await this.service.get(codigoIbge);
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
@@ -28,7 +29,8 @@ export class CityService {
     const response = await this.service.getAll();
 
     if (response.isError()) {
-      return fail(response.value.error);
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
     }
 
     return ok(response.value);
