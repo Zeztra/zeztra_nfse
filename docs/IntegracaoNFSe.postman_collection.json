@@ -3982,6 +3982,291 @@
 					]
 				},
 				{
+					"name": "Consult a nfse (summarized)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{accessKey}}",
+								"description": "Token da Empresa no Plugnotas",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/plugnotas/nfse/consultar/67b9c31a959e98ad6bc6f4cd",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"plugnotas",
+								"nfse",
+								"consultar",
+								"67b9c31a959e98ad6bc6f4cd"
+							]
+						},
+						"description": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"Test Collection\",\n            \"description\": \"This collection makes a request to the Postman Echo service to get a list of request headers sent by an HTTP client.\",\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\n        },\n        \"item\": [\n            {\n                \"name\": \"Test GET Response\",\n                \"event\": [\n                    {\n                        \"listen\": \"test\",\n                        \"script\": {\n                            \"id\": \"7d2334fc-a84a-4c3d-b26c-7529afa4c0ae\",\n                            \"exec\": [\n                                \"pm.test(\\\"Status code is 200\\\", function () {\",\n                                \"    pm.response.to.have.status(200);\",\n                                \"});\"\n                                ],\n                            \"type\": \"text/javascript\"\n                            }\n                        }\n                    ],\n                \"request\": {\n                    \"url\": \"https://echo.getpostman.com/headers\",\n                    \"method\": \"GET\",\n                    \"header\": [\n                        {\n                            \"key\": \"Content-Type\",\n                            \"value\": \"application/json\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.getpostman.com/collections",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"collections"
+									],
+									"query": [
+										{
+											"key": "workspace",
+											"value": "1f0df51a-8658-4ee8-a2a1-d2567dfa09a9",
+											"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"payload\": [\n        {\n            \"id\": \"67b9c31a959e98ad6bc6f4cd\",\n            \"idIntegracao\": \"20250222-01\",\n            \"emissao\": \"22/02/2025\",\n            \"tipoAutorizacao\": \"WEBSERVICE\",\n            \"situacao\": \"CANCELADO\",\n            \"prestador\": \"29062609000177\",\n            \"tomador\": \"08187168000160\",\n            \"valorServico\": 0.1,\n            \"numeroNfse\": \"10857\",\n            \"serie\": \"PLUG\",\n            \"lote\": 7771,\n            \"numero\": 1004,\n            \"codigoVerificacao\": \"83WH1UAGK\",\n            \"autorizacao\": \"22/02/2025\",\n            \"mensagem\": \"Cancelamento de NFS-e Homologado\",\n            \"pdf\": \"https://api.plugnotas.com.br/nfse/pdf/67b9c31a959e98ad6bc6f4cd\",\n            \"xml\": \"https://api.plugnotas.com.br/nfse/xml/67b9c31a959e98ad6bc6f4cd\",\n            \"cancelamento\": \"22/02/2025\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Bad Request 400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"Test Collection\",\n            \"description\": \"This collection makes a request to the Postman Echo service to get a list of request headers sent by an HTTP client.\",\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\n        },\n        \"item\": [\n            {\n                \"name\": \"Test GET Response\",\n                \"event\": [\n                    {\n                        \"listen\": \"test\",\n                        \"script\": {\n                            \"id\": \"7d2334fc-a84a-4c3d-b26c-7529afa4c0ae\",\n                            \"exec\": [\n                                \"pm.test(\\\"Status code is 200\\\", function () {\",\n                                \"    pm.response.to.have.status(200);\",\n                                \"});\"\n                                ],\n                            \"type\": \"text/javascript\"\n                            }\n                        }\n                    ],\n                \"request\": {\n                    \"url\": \"https://echo.getpostman.com/headers\",\n                    \"method\": \"GET\",\n                    \"header\": [\n                        {\n                            \"key\": \"Content-Type\",\n                            \"value\": \"application/json\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.getpostman.com/collections",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"collections"
+									],
+									"query": [
+										{
+											"key": "workspace",
+											"value": "1f0df51a-8658-4ee8-a2a1-d2567dfa09a9",
+											"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": {\n    \"message\": \"Não localizamos qualquer NFe com os parâmetros informados\",\n    \"data\": {\n      \"idOrChave\": \"6799125e8f288ab5123a5a0\"\n    }\n  }\n}"
+						},
+						{
+							"name": "Bad Request 401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"collection\": {\n        \"item\": [\n            {\n                \"name\": \"Test GET Response\",\n                \"event\": [\n                    {\n                        \"listen\": \"test\",\n                        \"script\": {\n                            \"id\": \"7d2334fc-a84a-4c3d-b26c-7529afa4c0ae\",\n                            \"exec\": [\n                                \"pm.test(\\\"Status code is 200\\\", function () {\",\n                                \"    pm.response.to.have.status(200);\",\n                                \"});\"\n                                ],\n                            \"type\": \"text/javascript\"\n                            }\n                        }\n                    ],\n                \"request\": {\n                    \"url\": \"https://echo.getpostman.com/headers\",\n                    \"method\": \"GET\",\n                    \"header\": [\n                        {\n                            \"key\": \"Content-Type\",\n                            \"value\": \"application/json\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.getpostman.com/collections",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"collections"
+									],
+									"query": [
+										{
+											"key": "workspace",
+											"value": "1f0df51a-8658-4ee8-a2a1-d2567dfa09a9",
+											"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": {\n    \"message\": \"O token informado é inválido. Para o ambiente de produção, Acesse https://app2.plugnotas.com.br/, e gere o seu TOKEN de acesso\"\n  }\n}"
+						},
+						{
+							"name": "Bad Request 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"collection\": {\n        \"item\": [\n            {\n                \"name\": \"Test GET Response\",\n                \"event\": [\n                    {\n                        \"listen\": \"test\",\n                        \"script\": {\n                            \"id\": \"7d2334fc-a84a-4c3d-b26c-7529afa4c0ae\",\n                            \"exec\": [\n                                \"pm.test(\\\"Status code is 200\\\", function () {\",\n                                \"    pm.response.to.have.status(200);\",\n                                \"});\"\n                                ],\n                            \"type\": \"text/javascript\"\n                            }\n                        }\n                    ],\n                \"request\": {\n                    \"url\": \"https://echo.getpostman.com/headers\",\n                    \"method\": \"GET\",\n                    \"header\": [\n                        {\n                            \"key\": \"Content-Type\",\n                            \"value\": \"application/json\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.getpostman.com/collections",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"collections"
+									],
+									"query": [
+										{
+											"key": "workspace",
+											"value": "1f0df51a-8658-4ee8-a2a1-d2567dfa09a9",
+											"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": {\n    \"message\": \"Não localizamos qualquer NFSe com os parâmetros informados\",\n    \"data\": {\n      \"id\": \"0000000\"\n    }\n  }\n}"
+						}
+					]
+				},
+				{
 					"name": "Download XML",
 					"event": [
 						{
@@ -7641,7 +7926,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/v1/plugnotas/nfse/67bcd4e80fb93dc346ed9385",
+							"raw": "{{baseUrl}}/v1/plugnotas/nfse/679be4b0365b68ce31a70be2",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -7649,7 +7934,7 @@
 								"v1",
 								"plugnotas",
 								"nfse",
-								"67bcd4e80fb93dc346ed9385"
+								"679be4b0365b68ce31a70be2"
 							]
 						},
 						"description": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
@@ -7872,6 +8157,291 @@
 							],
 							"cookie": [],
 							"body": "{\n  \"error\": {\n    \"message\": \"Não localizamos qualquer NFSe com os parâmetros informados\",\n    \"data\": {\n      \"filter\": \"0000000000000000\"\n    }\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Consult a nfse (summarized)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{accessKey}}",
+								"description": "Token da Empresa no Plugnotas",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/plugnotas/nfse/consultar/679be4b0365b68ce31a70be2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"plugnotas",
+								"nfse",
+								"consultar",
+								"679be4b0365b68ce31a70be2"
+							]
+						},
+						"description": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"Test Collection\",\n            \"description\": \"This collection makes a request to the Postman Echo service to get a list of request headers sent by an HTTP client.\",\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\n        },\n        \"item\": [\n            {\n                \"name\": \"Test GET Response\",\n                \"event\": [\n                    {\n                        \"listen\": \"test\",\n                        \"script\": {\n                            \"id\": \"7d2334fc-a84a-4c3d-b26c-7529afa4c0ae\",\n                            \"exec\": [\n                                \"pm.test(\\\"Status code is 200\\\", function () {\",\n                                \"    pm.response.to.have.status(200);\",\n                                \"});\"\n                                ],\n                            \"type\": \"text/javascript\"\n                            }\n                        }\n                    ],\n                \"request\": {\n                    \"url\": \"https://echo.getpostman.com/headers\",\n                    \"method\": \"GET\",\n                    \"header\": [\n                        {\n                            \"key\": \"Content-Type\",\n                            \"value\": \"application/json\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.getpostman.com/collections",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"collections"
+									],
+									"query": [
+										{
+											"key": "workspace",
+											"value": "1f0df51a-8658-4ee8-a2a1-d2567dfa09a9",
+											"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"payload\": [\n        {\n            \"id\": \"67b9c31a959e98ad6bc6f4cd\",\n            \"idIntegracao\": \"20250222-01\",\n            \"emissao\": \"22/02/2025\",\n            \"tipoAutorizacao\": \"WEBSERVICE\",\n            \"situacao\": \"CANCELADO\",\n            \"prestador\": \"29062609000177\",\n            \"tomador\": \"08187168000160\",\n            \"valorServico\": 0.1,\n            \"numeroNfse\": \"10857\",\n            \"serie\": \"PLUG\",\n            \"lote\": 7771,\n            \"numero\": 1004,\n            \"codigoVerificacao\": \"83WH1UAGK\",\n            \"autorizacao\": \"22/02/2025\",\n            \"mensagem\": \"Cancelamento de NFS-e Homologado\",\n            \"pdf\": \"https://api.plugnotas.com.br/nfse/pdf/67b9c31a959e98ad6bc6f4cd\",\n            \"xml\": \"https://api.plugnotas.com.br/nfse/xml/67b9c31a959e98ad6bc6f4cd\",\n            \"cancelamento\": \"22/02/2025\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Bad Request 400",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"Test Collection\",\n            \"description\": \"This collection makes a request to the Postman Echo service to get a list of request headers sent by an HTTP client.\",\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\n        },\n        \"item\": [\n            {\n                \"name\": \"Test GET Response\",\n                \"event\": [\n                    {\n                        \"listen\": \"test\",\n                        \"script\": {\n                            \"id\": \"7d2334fc-a84a-4c3d-b26c-7529afa4c0ae\",\n                            \"exec\": [\n                                \"pm.test(\\\"Status code is 200\\\", function () {\",\n                                \"    pm.response.to.have.status(200);\",\n                                \"});\"\n                                ],\n                            \"type\": \"text/javascript\"\n                            }\n                        }\n                    ],\n                \"request\": {\n                    \"url\": \"https://echo.getpostman.com/headers\",\n                    \"method\": \"GET\",\n                    \"header\": [\n                        {\n                            \"key\": \"Content-Type\",\n                            \"value\": \"application/json\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.getpostman.com/collections",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"collections"
+									],
+									"query": [
+										{
+											"key": "workspace",
+											"value": "1f0df51a-8658-4ee8-a2a1-d2567dfa09a9",
+											"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": {\n    \"message\": \"Não localizamos qualquer NFe com os parâmetros informados\",\n    \"data\": {\n      \"idOrChave\": \"6799125e8f288ab5123a5a0\"\n    }\n  }\n}"
+						},
+						{
+							"name": "Bad Request 401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"collection\": {\n        \"item\": [\n            {\n                \"name\": \"Test GET Response\",\n                \"event\": [\n                    {\n                        \"listen\": \"test\",\n                        \"script\": {\n                            \"id\": \"7d2334fc-a84a-4c3d-b26c-7529afa4c0ae\",\n                            \"exec\": [\n                                \"pm.test(\\\"Status code is 200\\\", function () {\",\n                                \"    pm.response.to.have.status(200);\",\n                                \"});\"\n                                ],\n                            \"type\": \"text/javascript\"\n                            }\n                        }\n                    ],\n                \"request\": {\n                    \"url\": \"https://echo.getpostman.com/headers\",\n                    \"method\": \"GET\",\n                    \"header\": [\n                        {\n                            \"key\": \"Content-Type\",\n                            \"value\": \"application/json\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.getpostman.com/collections",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"collections"
+									],
+									"query": [
+										{
+											"key": "workspace",
+											"value": "1f0df51a-8658-4ee8-a2a1-d2567dfa09a9",
+											"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": {\n    \"message\": \"O token informado é inválido. Para o ambiente de produção, Acesse https://app2.plugnotas.com.br/, e gere o seu TOKEN de acesso\"\n  }\n}"
+						},
+						{
+							"name": "Bad Request 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"collection\": {\n        \"item\": [\n            {\n                \"name\": \"Test GET Response\",\n                \"event\": [\n                    {\n                        \"listen\": \"test\",\n                        \"script\": {\n                            \"id\": \"7d2334fc-a84a-4c3d-b26c-7529afa4c0ae\",\n                            \"exec\": [\n                                \"pm.test(\\\"Status code is 200\\\", function () {\",\n                                \"    pm.response.to.have.status(200);\",\n                                \"});\"\n                                ],\n                            \"type\": \"text/javascript\"\n                            }\n                        }\n                    ],\n                \"request\": {\n                    \"url\": \"https://echo.getpostman.com/headers\",\n                    \"method\": \"GET\",\n                    \"header\": [\n                        {\n                            \"key\": \"Content-Type\",\n                            \"value\": \"application/json\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.getpostman.com/collections",
+									"protocol": "https",
+									"host": [
+										"api",
+										"getpostman",
+										"com"
+									],
+									"path": [
+										"collections"
+									],
+									"query": [
+										{
+											"key": "workspace",
+											"value": "1f0df51a-8658-4ee8-a2a1-d2567dfa09a9",
+											"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"error\": {\n    \"message\": \"Não localizamos qualquer NFSe com os parâmetros informados\",\n    \"data\": {\n      \"id\": \"0000000\"\n    }\n  }\n}"
 						}
 					]
 				},

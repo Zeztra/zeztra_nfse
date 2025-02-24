@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 
-import { resJson, resPDF, runAsyncWrapper } from '../../../util';
+import { resJson, resPdf, resXml, runAsyncWrapper } from '../../../util';
 import { NfseController } from '@application/controller/nfseController';
 
 const router = Router();
@@ -26,6 +26,13 @@ router.get(
   }),
 );
 
+router.get(
+  '/consultar/:id',
+  runAsyncWrapper(async (request: Request, response: Response) => {
+    resJson(response, await NfseController.consult(request));
+  }),
+);
+
 router.post(
   '/cancelar/:id',
   runAsyncWrapper(async (request: Request, response: Response) =>
@@ -43,21 +50,21 @@ router.get(
 router.get(
   '/pdf/:id',
   runAsyncWrapper(async (request: Request, response: Response) => {
-    resPDF(response, await NfseController.pdf(request));
+    resPdf(response, await NfseController.pdf(request));
   }),
 );
 
 router.get(
   '/rps/pdf/:id',
   runAsyncWrapper(async (request: Request, response: Response) => {
-    resPDF(response, await NfseController.pdfRps(request));
+    resPdf(response, await NfseController.pdfRps(request));
   }),
 );
 
 router.get(
   '/xml/:id',
   runAsyncWrapper(async (request: Request, response: Response) => {
-    resJson(response, await NfseController.xml(request));
+    resXml(response, await NfseController.xml(request));
   }),
 );
 
@@ -78,7 +85,7 @@ router.get(
 router.get(
   '/eventos/:id/:protocol/xml',
   runAsyncWrapper(async (request: Request, response: Response) => {
-    resJson(response, await NfseController.xmlEvent(request));
+    resXml(response, await NfseController.xmlEvent(request));
   }),
 );
 

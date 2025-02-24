@@ -21,7 +21,7 @@ export class NfseService {
     const responseValidator = validatorSchema.nfse(req.body);
 
     if (responseValidator.isError()) {
-      return handleError(responseValidator.value, HttpStatusCode.BadRequest);
+     return handleError(responseValidator.value, HttpStatusCode.BadRequest);
     }
 
     const response = await this.service.send(req.body);
@@ -61,6 +61,18 @@ export class NfseService {
   async get(req: Request): Promise<ResponseController> {
     const { id } = req.params;
     const response = await this.service.get(id);
+
+    if (response.isError()) {
+      const { error, statusCode } = response.value;
+      return handleError(error, statusCode);
+    }
+
+    return ok(response.value);
+  }
+
+  async consult(req: Request): Promise<ResponseController> {
+    const { id } = req.params;
+    const response = await this.service.consult(id);
 
     if (response.isError()) {
       const { error, statusCode } = response.value;

@@ -11,6 +11,10 @@ export class NfseController {
     return NfseFactory.service.get(req);
   }
 
+  static async consult(req: Request): Promise<ResponseController> {
+    return NfseFactory.service.consult(req);
+  }
+
   static async cancel(req: Request): Promise<ResponseController> {
     return NfseFactory.service.cancel(req);
   }

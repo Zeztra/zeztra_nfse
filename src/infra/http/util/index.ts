@@ -45,7 +45,7 @@ const resJson = (
   });
 };
 
-const resPDF = (
+const resPdf = (
   response: Response,
   responseController: ResponseControllerHTTP,
   saveLog?: {
@@ -83,4 +83,42 @@ const resPDF = (
     .send(payload);
 };
 
-export { runAsyncWrapper, resJson, resPDF };
+const resXml = (
+  response: Response,
+  responseController: ResponseControllerHTTP,
+  saveLog?: {
+    action: LogAction;
+    type: LogType;
+    saveLogResponse: (
+      action: LogAction,
+      logType: LogType,
+      req: any,
+      responseHTTP: ResponseControllerHTTP,
+    ) => void;
+  },
+): any => {
+  if (saveLog) {
+    saveLog.saveLogResponse(
+      saveLog.action,
+      saveLog.type,
+      response.req,
+      responseController,
+    );
+  }
+
+  const { success, payload, statusCode } = responseController;
+
+  if (payload.error) {
+    return response.status(statusCode).jsonp({
+      success,
+      payload: payload.error,
+    });
+  }
+
+  return response
+    .status(statusCode)
+    .setHeader('Content-Type', 'application/xml')
+    .send(payload);
+};
+
+export { runAsyncWrapper, resJson, resPdf, resXml };
