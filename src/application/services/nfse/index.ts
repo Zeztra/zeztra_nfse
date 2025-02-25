@@ -21,7 +21,7 @@ export class NfseService {
     const responseValidator = validatorSchema.nfse(req.body);
 
     if (responseValidator.isError()) {
-     return handleError(responseValidator.value, HttpStatusCode.BadRequest);
+      return handleError(responseValidator.value, HttpStatusCode.BadRequest);
     }
 
     const response = await this.service.send(req.body);
