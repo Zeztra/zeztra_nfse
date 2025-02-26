@@ -6,6 +6,14 @@ export type ResponseController = {
   success: boolean;
 };
 
+function getPayloadError(error: string | object): object {
+  if (error instanceof Array) {
+    return { errors: error };
+  }
+
+  return { error };
+}
+
 export function ok<T>(dto?: T): ResponseController {
   return {
     statusCode: HttpStatusCode.Ok,
@@ -33,7 +41,7 @@ export function accepted(): ResponseController {
 export function badRequest(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.BadRequest,
-    payload: { error },
+    payload: getPayloadError(error),
     success: false,
   };
 }
@@ -43,7 +51,7 @@ export function unprocessableEntity(
 ): ResponseController {
   return {
     statusCode: HttpStatusCode.UnprocessableEntity,
-    payload: { error },
+    payload: getPayloadError(error),
     success: false,
   };
 }
@@ -51,7 +59,7 @@ export function unprocessableEntity(
 export function unauthorized(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.Unauthorized,
-    payload: { error },
+    payload: getPayloadError(error),
     success: false,
   };
 }
@@ -59,7 +67,7 @@ export function unauthorized(error: string | object): ResponseController {
 export function forbidden(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.Forbidden,
-    payload: { error },
+    payload: getPayloadError(error),
     success: false,
   };
 }
@@ -67,7 +75,7 @@ export function forbidden(error: string | object): ResponseController {
 export function notFound(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.NotFound,
-    payload: { error },
+    payload: getPayloadError(error),
     success: false,
   };
 }
@@ -75,7 +83,7 @@ export function notFound(error: string | object): ResponseController {
 export function conflict(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.Conflict,
-    payload: { error },
+    payload: getPayloadError(error),
     success: false,
   };
 }
@@ -83,7 +91,7 @@ export function conflict(error: string | object): ResponseController {
 export function tooMany(error: string | object): ResponseController {
   return {
     statusCode: HttpStatusCode.TooManyRequests,
-    payload: { error },
+    payload: getPayloadError(error),
     success: false,
   };
 }
@@ -93,7 +101,7 @@ export function fail(error: string | object): ResponseController {
 
   return {
     statusCode: HttpStatusCode.InternalServerError,
-    payload: { error },
+    payload: getPayloadError(error),
     success: false,
   };
 }
